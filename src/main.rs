@@ -1,6 +1,7 @@
 extern crate clap;
 
 use std::path::PathBuf;
+use std::process::exit;
 use clap::Parser;
 
 #[derive(Parser, Debug)]
@@ -19,6 +20,6 @@ fn main() {
         // TODO: find git repos
         // TODO: loop over list of repos to perform pull & push
     } else {
-        // TODO: Exit program with non-zero exit code.
+        exit(1);
     }
 }
