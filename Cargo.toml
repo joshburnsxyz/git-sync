@@ -4,3 +4,4 @@ version = "0.1.0"
 edition = "2022"
 
 [dependencies]
+clap = { version = "3.2.6", features = ["derive"] }
