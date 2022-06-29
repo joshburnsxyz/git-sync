@@ -1,5 +1,6 @@
 use walkdir::{WalkDir,DirEntry};
 use std::path::Path;
+use std::process::Command;
 
 // Global Constants
 pub const PROGRAM_VERSION: String = "0.1.0";
@@ -31,5 +32,18 @@ pub fn git_find_repos() -> Vec {
     }
 }
 
-pub fn git_pull_from_remote() -> bool {}
-pub fn git_push_to_remote() -> bool {}
+// Run git pull from current repo
+pub fn git_pull_from_remote() -> bool {
+    let _cmd = Command::new("git")
+        .args(["pull"])
+        .output()
+        .expect();
+}
+
+// Run git push from current repo
+pub fn git_push_to_remote() -> bool {
+    let _cmd = Command::new("git")
+        .args(["push"])
+        .output()
+        .expect();
+}
