@@ -14,12 +14,12 @@ pub fn is_repo(tg_entry: &DirEntry) -> bool {
 }
 
 // Find git repos in cwd
-pub fn find_repos() -> &'static Vec<Path> {
+pub fn find_repos() -> &'static Vec<DirEntry> {
     let mut paths_vec = Vec::new();
-    for entry in WalkDir::new("foo").min_depth(1).max_depth(3) {
+    for entry in WalkDir::new(".").min_depth(1).max_depth(3) {
         let is_git: bool = is_repo(entry);
         if is_git == true {
-            paths_vec.push(entry.into_path());
+            paths_vec.push(entry);
         }
     }
     return &paths_vec;
