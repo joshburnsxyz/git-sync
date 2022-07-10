@@ -3,7 +3,6 @@ extern crate clap;
 use std::path::PathBuf;
 use std::process::exit;
 use clap::Parser;
-use git_sync::PROGRAM_VERSION;
 
 #[derive(Parser, Debug)]
 #[clap(author,version,about,long_about = None)]
