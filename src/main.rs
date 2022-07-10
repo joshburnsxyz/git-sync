@@ -26,11 +26,19 @@ fn main() {
         if args.recurse == true {
             let paths: Vec = git::find_repos();
             for e in paths {
-                // TODO:
-                //   - cd into `e`
-                //   - if is_repo returns false do nothing
-                //   - run git pull and then git push
+                // set pwd to the selected path.
+                env::set_current_dir(&e.path); // TODO: Error check this function call
+                
+                if git::is_repo(&e) {
+                    git::pull();
+                    git::push();
+                } else {
+                    println!("No git repo found here...");
+                }
                 println!("{:#?}", e);
+
+                // set pwd to the selected path.
+                env::set_current_dir(&pwd);
             }
         }
     } else {
