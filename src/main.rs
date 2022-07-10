@@ -3,6 +3,7 @@ extern crate clap;
 use std::path::PathBuf;
 use std::process::exit;
 use clap::Parser;
+use git_sync::git;
 
 #[derive(Parser, Debug)]
 #[clap(author,version,about,long_about = None)]
@@ -10,7 +11,7 @@ struct Args {
     #[clap(short,long,value_parser)]
     config: Option<PathBuf>,
     
-    #[clap(short,long,value_parser)]
+    #[clap(short,long)]
     recurse: bool,
 }
 
@@ -19,9 +20,12 @@ fn main() {
     let args = Args::parse();
 
     // Validate config path
-    if let Some(config_path) = args.config.as_deref() {
+    if let Some(config_path) = args.config.as_deref() {    
         if args.recurse == true {
-            println!("recurse flag enabled~\n\n");
+            let paths: Vec = git::find_repos();
+            for e in paths {
+                // Perform git operations here...
+            }
         }
     } else {
         exit(1);

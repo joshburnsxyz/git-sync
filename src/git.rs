@@ -19,7 +19,7 @@ pub fn is_repo(tg_entry: &DirEntry) -> bool {
 pub fn find_repos() -> Vec {
     let mut paths_vec = Vec::new();
     for entry in WalkDir::new(".").into_iter().filter_map(|e| e.ok()) {
-        let is_git: bool = is_git_repo(entry);
+        let is_git: bool = is_repo(entry);
         if is_git == true {
             paths_vec.push(entry.into_path());
         }
