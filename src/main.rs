@@ -1,5 +1,6 @@
 extern crate clap;
 
+use std::env;
 use std::path::PathBuf;
 use std::process::exit;
 use clap::Parser;
@@ -23,6 +24,7 @@ fn main() {
     if let Some(config_path) = args.config.as_deref() {    
         if args.recurse == true {
             let paths: Vec = git::find_repos();
+            let pwd = env::current_dir().unwrap();
             for e in paths {
                 println!("{:#?}", e);
             }
