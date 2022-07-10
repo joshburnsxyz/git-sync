@@ -5,7 +5,7 @@ use std::process::Command;
 pub fn is_repo(tg_entry: &DirEntry) -> bool {
     let mut status: bool = false;
     for entry in WalkDir::new(tg_entry).into_iter().filter_map(|e| e.ok()) {
-        if entry == ".git" {
+        if entry.path() == ".git" {
             status = true; 
         }
     }
