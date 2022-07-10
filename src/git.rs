@@ -7,11 +7,9 @@ pub fn is_repo(tg_entry: &DirEntry) -> bool {
     for entry in WalkDir::new(tg_entry).into_iter().filter_map(|e| e.ok()) {
         if entry == ".git" {
             status = true; 
-        } else {
-            status = false;
         }
-        return status;
     }
+    return status;
 }
 
 // Find git repos in cwd
