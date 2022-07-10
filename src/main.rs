@@ -24,7 +24,7 @@ fn main() {
         if args.recurse == true {
             let paths: Vec = git::find_repos();
             for e in paths {
-                // Perform git operations here...
+                println!("{:#?}", e);
             }
         }
     } else {
