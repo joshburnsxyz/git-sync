@@ -1,5 +1,6 @@
 use walkdir::{WalkDir,DirEntry};
 use std::process::Command;
+use std::path::Path;
 
 // Detect if given directory is a git repo or not
 pub fn is_repo(tg_entry: &DirEntry) -> bool {
@@ -13,15 +14,15 @@ pub fn is_repo(tg_entry: &DirEntry) -> bool {
 }
 
 // Find git repos in cwd
-pub fn find_repos() -> &'static Vec<DirEntry> {
+pub fn find_repos() -> &'static Vec<Path> {
     let mut paths_vec = Vec::new();
-    for entry in WalkDir::new(".").into_iter().filter_map(|e| e.ok()) {
+    for entry in WalkDir::new("foo").min_depth(1).max_depth(3) {
         let is_git: bool = is_repo(entry);
         if is_git == true {
             paths_vec.push(entry.into_path());
         }
-        return &paths_vec
     }
+    return &paths_vec;
 }
 
 // Run git pull from current repo
