@@ -11,7 +11,7 @@ struct Args {
     config: Option<PathBuf>,
     
     #[clap(short,long,value_parser)]
-    onlyPwd: bool,
+    recurse: bool,
 }
 
 fn main() {
@@ -20,8 +20,8 @@ fn main() {
 
     // Validate config path
     if let Some(config_path) = args.config.as_deref() {
-        if args.onlyPwd == true {
-            println!("onlyPwd flag enabled~\n\n");
+        if args.recurse == true {
+            println!("recurse flag enabled~\n\n");
         }
     } else {
         exit(1);
