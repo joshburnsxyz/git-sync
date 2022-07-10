@@ -27,7 +27,7 @@ fn main() {
             let paths: Vec = git::find_repos();
             for e in paths {
                 // set pwd to the selected path.
-                env::set_current_dir(&e.path); // TODO: Error check this function call
+                env::set_current_dir(&e.path()); // TODO: Error check this function call
                 
                 if git::is_repo(&e) {
                     git::pull();
