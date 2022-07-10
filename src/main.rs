@@ -19,13 +19,17 @@ struct Args {
 fn main() {
     // Load args
     let args = Args::parse();
+    let pwd = env::current_dir().unwrap();
 
     // Validate config path
     if let Some(config_path) = args.config.as_deref() {    
         if args.recurse == true {
             let paths: Vec = git::find_repos();
-            let pwd = env::current_dir().unwrap();
             for e in paths {
+                // TODO:
+                //   - cd into `e`
+                //   - if is_repo returns false do nothing
+                //   - run git pull and then git push
                 println!("{:#?}", e);
             }
         }
