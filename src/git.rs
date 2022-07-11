@@ -18,7 +18,7 @@ pub fn is_repo(tg_entry: &Path) -> bool {
 pub fn find_repos() -> Vec<DirEntry> {
     let mut paths_vec = Vec::new();
     for entry in WalkDir::new(".").min_depth(1).max_depth(3) {
-        if is_repo(entry.unwrap().path()) == true {
+        if is_repo(entry.as_ref().unwrap().path()) == true {
             paths_vec.push(entry.unwrap());
         }
     }
