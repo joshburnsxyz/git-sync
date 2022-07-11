@@ -26,7 +26,7 @@ pub fn find_repos() -> Vec<DirEntry> {
 }
 
 // Run git pull from current repo
-pub fn pull() {
+pub fn pull() -> std::process::Output {
     let _cmd = Command::new("git")
         .args(["pull"])
         .output()
@@ -35,7 +35,7 @@ pub fn pull() {
 }
 
 // Run git push from current repo
-pub fn push() {
+pub fn push() -> std::process::Output {
     let _cmd = Command::new("git")
         .args(["push"])
         .output()
