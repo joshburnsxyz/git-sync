@@ -22,7 +22,7 @@ pub fn find_repos() -> &'static Vec<DirEntry> {
             paths_vec.push(entry);
         }
     }
-    return &paths_vec;
+    return &paths_vec.unwap();
 }
 
 // Run git pull from current repo
