@@ -7,7 +7,7 @@ pub fn is_repo(tg_entry: &Path) -> bool {
     let mut status: bool = false;
     for entry in WalkDir::new(tg_entry).into_iter().filter_map(|e| e.ok()) {
         println!("{:#?}",entry.path().to_str());
-        if entry.path().to_str() == ".git" {
+        if entry.path().to_str() == Some(".git") {
             status = true; 
         }
     }
@@ -18,12 +18,12 @@ pub fn is_repo(tg_entry: &Path) -> bool {
 pub fn find_repos() -> &'static Vec<DirEntry> {
     let mut paths_vec = Vec::new();
     for entry in WalkDir::new(".").min_depth(1).max_depth(3) {
-        let is_git: bool = is_repo(entry);
+        let is_git: bool = is_repo(entry.path());
         if is_git == true {
             paths_vec.push(entry);
         }
     }
-    return &paths_vec.unwap();
+    return &paths_vec.unwrap();
 }
 
 // Run git pull from current repo
