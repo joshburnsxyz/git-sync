@@ -29,7 +29,7 @@ fn main() {
                 // set pwd to the selected path.
                 env::set_current_dir(&e.path()); // TODO: Error check this function call
                 
-                if git::is_repo(&e.path()) {
+                if git::is_repo(&e.path()).unwrap() {
                     git::pull();
                     git::push();
                 } else {
@@ -39,6 +39,10 @@ fn main() {
 
                 // set pwd to the selected path.
                 env::set_current_dir(&pwd);
+            }
+        } else {
+            if is_repo(&pwd).unwrap() == true {
+                
             }
         }
     } else {

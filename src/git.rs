@@ -20,10 +20,10 @@ pub fn find_repos() -> &'static Vec<DirEntry> {
     for entry in WalkDir::new(".").min_depth(1).max_depth(3) {
         let is_git: bool = is_repo(entry.path());
         if is_git == true {
-            paths_vec.push(entry);
+            paths_vec.push(entry.unwrap());
         }
     }
-    return &paths_vec.unwrap();
+    return &paths_vec;
 }
 
 // Run git pull from current repo
