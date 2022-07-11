@@ -24,7 +24,7 @@ fn main() {
     // Validate config path
     if let Some(config_path) = args.config.as_deref() {    
         if args.recurse == true {
-            let paths: Vec = git::find_repos();
+            let paths = git::find_repos();
             for e in paths {
                 // set pwd to the selected path.
                 env::set_current_dir(&e.path()); // TODO: Error check this function call

@@ -15,7 +15,7 @@ pub fn is_repo(tg_entry: &Path) -> bool {
 }
 
 // Find git repos in cwd
-pub fn find_repos() -> &'static Vec<DirEntry> {
+pub fn find_repos() -> Vec<DirEntry> {
     let mut paths_vec = Vec::new();
     for entry in WalkDir::new(".").min_depth(1).max_depth(3) {
         let is_git: bool = is_repo(entry.unwrap().path());
@@ -23,7 +23,7 @@ pub fn find_repos() -> &'static Vec<DirEntry> {
             paths_vec.push(entry.unwrap());
         }
     }
-    return &paths_vec;
+    return paths_vec;
 }
 
 // Run git pull from current repo
