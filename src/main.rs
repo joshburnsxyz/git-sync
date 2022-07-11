@@ -41,8 +41,9 @@ fn main() {
                 env::set_current_dir(&pwd);
             }
         } else {
-            if is_repo(&pwd).unwrap() == true {
-                
+            if git::is_repo(&pwd).unwrap() == true {
+                git::pull();
+                git::push();
             }
         }
     } else {
