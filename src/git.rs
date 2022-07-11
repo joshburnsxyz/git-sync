@@ -31,6 +31,7 @@ pub fn pull() {
         .args(["pull"])
         .output()
         .expect("Could not perform git pull");
+        return _cmd;
 }
 
 // Run git push from current repo
@@ -39,4 +40,5 @@ pub fn push() {
         .args(["push"])
         .output()
         .expect("Could not perform git push");
+        return _cmd;
 }
