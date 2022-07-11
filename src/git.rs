@@ -3,10 +3,10 @@ use std::process::Command;
 use std::path::Path;
 
 // Detect if given directory is a git repo or not
-pub fn is_repo(tg_entry: &DirEntry) -> bool {
+pub fn is_repo(tg_entry: &Path) -> bool {
     let mut status: bool = false;
     for entry in WalkDir::new(tg_entry).into_iter().filter_map(|e| e.ok()) {
-        println!(entry.path().to_str())
+        println!("{:#?}",entry.path().to_str());
         if entry.path().to_str() == ".git" {
             status = true; 
         }
